@@ -29,12 +29,12 @@
 
 
         <service
-            android:name=".data.notification.NotificationService"
+            android:name="com.example.flowlix.notification.NotificationService"
             android:enabled="true"
             android:exported="true">
         </service>
 
-        <receiver android:name=".data.notification.ActionReceiver"
+        <receiver android:name="com.example.flowlix.notification.ActionReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="action1"/>

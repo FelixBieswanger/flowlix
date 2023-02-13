@@ -1,4 +1,4 @@
-package com.example.flowlix.data
+package com.example.flowlix.model
 
 import android.content.Context
 import android.util.Log
@@ -26,12 +26,12 @@ object io {
      */
     fun appendtofile(context: Context, path:String,fileName: String, data:String){
 
-        val directory = File(BASEPATH+path)
+        val directory = File(BASEPATH +path)
         if (!directory.exists()) {
             directory.mkdirs()
         }
 
-        Log.d("ns","appending to path ${BASEPATH+path} and file $fileName")
+        Log.d("ns","appending to path ${BASEPATH +path} and file $fileName")
 
         val file = File(BASEPATH +"$path" ,fileName)
         file.createNewFile()
@@ -66,7 +66,7 @@ object io {
      * @return The last line of the file as a string.
      */
     fun read_last_line(path: String,fileName: String):String{
-        val file = File(BASEPATH+"$path", fileName)
+        val file = File(BASEPATH +"$path", fileName)
         val reader = BufferedReader(FileReader(file))
         var lastLine = ""
         var currentLine = reader.readLine()
@@ -87,7 +87,7 @@ object io {
 
         val fileString: String
         try {
-            fileString = File(BASEPATH+"$path", fileName).readText(Charsets.UTF_8)
+            fileString = File(BASEPATH +"$path", fileName).readText(Charsets.UTF_8)
         } catch (ioException: IOException) {
             throw ioException
         }
@@ -103,7 +103,7 @@ object io {
      * @return True if the file exists, false otherwise.
      */
     fun check_if_file_exists(path:String, fileName: String): Boolean{
-        var file = File(BASEPATH+"$path",fileName)
+        var file = File(BASEPATH +"$path",fileName)
         return file.exists()
     }
 

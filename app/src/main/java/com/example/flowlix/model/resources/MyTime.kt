@@ -1,6 +1,5 @@
-package com.example.flowlix.data
+package com.example.flowlix.model.resources
 
-import android.os.Debug
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Date

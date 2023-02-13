@@ -1,11 +1,10 @@
-package com.example.flowlix.data.notification
+package com.example.flowlix.notification
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.work.*
-import com.example.flowlix.data.io
 import com.example.flowlix.presentation.MainActivity
 import java.util.concurrent.TimeUnit
 

@@ -22,11 +22,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.*
 import com.example.flowlix.R
-import com.example.flowlix.data.Activity
-import com.example.flowlix.data.FlowViewModel
-import com.example.flowlix.data.StringProvider
+import com.example.flowlix.model.data.Activity
+import com.example.flowlix.viewmodel.FlowViewModel
+import com.example.flowlix.model.resources.StringProvider
 import com.example.flowlix.presentation.screens.NoActivityScreen
-import com.example.flowlix.presentation.screens.doCheckAnimation
 import java.util.*
 
 

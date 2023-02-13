@@ -7,11 +7,7 @@
 package com.example.flowlix.presentation
 
 import android.Manifest
-import android.app.NotificationManager
-import android.icu.util.Calendar.SECOND
-import android.icu.util.MeasureUnit.SECOND
 import android.os.Bundle
-import android.text.format.Time.SECOND
 
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -24,17 +20,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.Observer
 
 import androidx.wear.compose.material.MaterialTheme
 import androidx.work.*
 
-import com.example.flowlix.data.FlowViewModel
-import com.example.flowlix.data.MyTime
+import com.example.flowlix.viewmodel.FlowViewModel
+import com.example.flowlix.model.resources.MyTime
 
-import com.example.flowlix.data.notification.SendNotificationWorker
-import com.example.flowlix.data.schedule.Schedule
-import com.example.flowlix.data.schedule.Scheduler
+import com.example.flowlix.notification.SendNotificationWorker
+import com.example.flowlix.model.schedule.Schedule
+import com.example.flowlix.model.schedule.Scheduler
 
 import com.example.flowlix.presentation.theme.FlowLixTheme
 import java.sql.Time

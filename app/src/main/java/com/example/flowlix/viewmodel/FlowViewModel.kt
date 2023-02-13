@@ -1,10 +1,13 @@
-package com.example.flowlix.data
+package com.example.flowlix.viewmodel
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import com.example.flowlix.data.schedule.Schedule
-import com.example.flowlix.data.schedule.Scheduler
+import com.example.flowlix.model.data.FlowUIState
+import com.example.flowlix.model.io
+import com.example.flowlix.model.resources.StringProvider
+import com.example.flowlix.model.schedule.Schedule
+import com.example.flowlix.model.schedule.Scheduler
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +15,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.sql.Time
-import kotlin.math.log
 
 
 /**

@@ -1,6 +1,7 @@
-package com.example.flowlix.data
+package com.example.flowlix.model.resources
 
 import com.example.flowlix.R
+import com.example.flowlix.model.data.Activity
 
 
 /**

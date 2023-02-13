@@ -1,4 +1,4 @@
-package com.example.flowlix.data
+package com.example.flowlix.model.data
 
 
 /**

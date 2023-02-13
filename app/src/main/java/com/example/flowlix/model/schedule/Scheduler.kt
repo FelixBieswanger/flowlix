@@ -1,9 +1,9 @@
-package com.example.flowlix.data.schedule
+package com.example.flowlix.model.schedule
 
 import android.content.Context
 import android.util.Log
-import com.example.flowlix.data.MyTime
-import com.example.flowlix.data.io
+import com.example.flowlix.model.resources.MyTime
+import com.example.flowlix.model.io
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.sql.Time
