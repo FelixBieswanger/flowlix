@@ -17,7 +17,7 @@ Flowlix is a smartwatch application developed to measure the user's experience o
 The project consists of several packages, each serving a specific purpose in the overall functionality of the application. It is build using the Model-View-ViewModel Pattern. Here's a rundown of the major packages and their contents.
 
 
-* Model Package \
+* [Model Package](app/src/main/java/com/example/flowlix/model/) \
 The model package contains the implementation of the flowlix class, which serves as the main model for the application.
 
 
