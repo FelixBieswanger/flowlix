@@ -15,6 +15,13 @@ import com.example.flowlix.data.MyTime
 import com.example.flowlix.presentation.MainActivity
 
 class SendNotificationWorker_delay(context: Context, workerParameters: WorkerParameters): Worker(context,workerParameters) {
+
+
+    val notificationid = 1
+    val channel_id = "channel1"
+    val channel_name = "MyChannel"
+    val channel_importance = NotificationManager.IMPORTANCE_HIGH
+
     override fun doWork(): Result {
 
         Log.d("SendNotificationWorker_delay","starting Notification Worker Delay @${MyTime.getTime()}")

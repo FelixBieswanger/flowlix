@@ -29,6 +29,26 @@ import com.example.flowlix.presentation.screens.NoActivityScreen
 import com.example.flowlix.presentation.screens.doCheckAnimation
 import java.util.*
 
+
+/**
+ * This code defines a FlowScreen composable function which is used to show a screen for an activity
+ * tracking app.
+ *
+ * The function takes a flowViewModel parameter which is an instance of the [FlowViewModel]
+ * class that provides the data and state of the app. The function uses the Column composable to arrange
+ * its children in a vertical manner, with the Modifier used to set the height, fill the maximum
+ * width and height of the screen.
+ *
+ * The [flowUIState] is obtained by using the collectAsState function on the uiState property of the
+ * [flowViewModel]. This is done to keep the value of [flowUIState] up-to-date whenever the
+ * uiState of the [flowViewModel] changes. A check animation is defined using AnimatedImageVector and
+ * rememberAnimatedVectorPainter. The animation is then used in an Image composable.
+ *
+ * The rest of the code displays the question, and options for the user to select from.
+ * The options are implemented as buttons and the selected option is entered into the [flowViewModel]
+ * by calling the enterValue method.
+ */
+
 @OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun FlowScreen(modifier: Modifier = Modifier, flowViewModel: FlowViewModel) {

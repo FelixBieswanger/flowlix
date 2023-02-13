@@ -9,19 +9,34 @@ import com.example.flowlix.data.io
 import com.example.flowlix.presentation.MainActivity
 import java.util.concurrent.TimeUnit
 
+
+/**
+ * [ActionReceiver] is a [BroadcastReceiver] that listens to specific actions.
+ *
+ * The class implements the `onReceive` method to handle the actions received.
+ */
 class ActionReceiver : BroadcastReceiver() {
 
+    /**
+     * The `onReceive` method is called when an action is received.
+     *
+     * @param context [Context] of the application.
+     * @param intent [Intent] containing the action received.
+     */
     override fun onReceive(context: Context, intent: Intent) {
         val action = intent.action
 
         when (action) {
+            // Start MainActivity when "action1" is received
             "action1" -> {
                 val activityIntent = Intent(context, MainActivity::class.java)
                 activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(activityIntent)
             }
+
+            // User Selected Delay, send notification in 5 min
             "action2" -> {
-                // Call a method that generates a file // means delay of notification
+
                 Log.d("ns","action2")
 
                 var lastalert = intent.getStringExtra("lastalert")
@@ -38,7 +53,7 @@ class ActionReceiver : BroadcastReceiver() {
                 val sendNotificationWork = OneTimeWorkRequestBuilder<SendNotificationWorker_delay>()
                     .setInputData(data)
                     .setConstraints(constraints)
-                    .setInitialDelay(1*30000, TimeUnit.MILLISECONDS)
+                    .setInitialDelay(5*60000, TimeUnit.MILLISECONDS)
                     .build()
 
                 workManager.cancelAllWork()

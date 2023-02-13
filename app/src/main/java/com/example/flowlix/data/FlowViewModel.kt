@@ -15,6 +15,19 @@ import java.sql.Time
 import kotlin.math.log
 
 
+/**
+ * FlowViewModel is the view model class for the Flow UI.
+ * It maintains the current state of the UI and provides functions for updating it.
+ * It also provides functions for handling the flow of the survey and saving the results.
+ *
+ * @property context The context of the application
+ * @property _uiState The mutable state flow of the UI
+ * @property uiState The state flow of the UI
+ * @property schedule The Schedule object for the current survey
+ * @property lastAlertTime The time of the last alert for the current survey
+ *
+ * @constructor Creates a new instance of FlowViewModel with the specified application context
+ */
 class FlowViewModel(app: Application) : AndroidViewModel(app) {
 
     val context = getApplication<Application>().applicationContext
@@ -31,6 +44,12 @@ class FlowViewModel(app: Application) : AndroidViewModel(app) {
     }
 
 
+    /**
+     * Set the next alarm for the current survey.
+     * The next alarm is obtained using the Scheduler.getNextAlarm method.
+     * If a next alarm is found, it is set in the _uiState.
+     * If there is no next alarm, the nextAlarm property in the _uiState is set to "No more pending".
+     */
     fun setNextAlarm() {
         val nextAlarm = Scheduler.getNextAlarm(this.schedule)
 
@@ -43,6 +62,13 @@ class FlowViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    /**
+     * Check if an alert has been triggered for the current survey.
+     * If an alert has been triggered, the lastAlertTime is obtained from the Scheduler.getLastAlert method.
+     * If a lastAlertTime is found, it is checked if a results file for that alert time exists.
+     * If the file exists, nothing happens.
+     * If the file does not exist, the isEvent property in the _uiState is set to true.
+     */
     fun checkifalert() {
 
         this.schedule = Scheduler.get_or_create_Schedule(context)
@@ -75,7 +101,11 @@ class FlowViewModel(app: Application) : AndroidViewModel(app) {
 
     }
 
-
+    /**
+     * Start the end animation for the survey.
+     * The isEnd property in the _uiState is set to true and the animation is started.
+     * After 2 seconds, the isEnd property is set to false and the isEvent property is set to false.
+     */
     fun startEndAnimation() {
         GlobalScope.launch {
 
@@ -89,7 +119,16 @@ class FlowViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-
+    /**
+     * Enter a value for the current question in the survey.
+     * The current time is obtained and used as the answer time.
+     * The answer, along with the question index, schedule date, last alert time, and answer time, is written to a results file.
+     * If the question index is less than the number of questions, it is incremented.
+     * If the question index is equal to the number of questions, the end animation is started.
+     *
+     * @param questionIndex The index of the current question
+     * @param answer The answer for the current question
+     */
     fun enterValue(questionIndex: Int, answer: Int) {
 
         val answerTime = Time(System.currentTimeMillis())

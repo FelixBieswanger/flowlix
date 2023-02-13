@@ -7,6 +7,7 @@
 package com.example.flowlix.presentation
 
 import android.Manifest
+import android.app.NotificationManager
 import android.icu.util.Calendar.SECOND
 import android.icu.util.MeasureUnit.SECOND
 import android.os.Bundle
@@ -31,7 +32,6 @@ import androidx.work.*
 import com.example.flowlix.data.FlowViewModel
 import com.example.flowlix.data.MyTime
 
-import com.example.flowlix.data.notification.NotificationService
 import com.example.flowlix.data.notification.SendNotificationWorker
 import com.example.flowlix.data.schedule.Schedule
 import com.example.flowlix.data.schedule.Scheduler
@@ -40,37 +40,29 @@ import com.example.flowlix.presentation.theme.FlowLixTheme
 import java.sql.Time
 import java.util.concurrent.TimeUnit
 
+
+
+/**
+ * MainActivity
+ * The main activity of the application. This activity contains the user interface that is displayed
+ * to the user. It is responsible for initializing the view model, registering for activity results,
+ * and setting the content of the activity using the Compose UI framework.
+ */
 class MainActivity : ComponentActivity() {
 
 
     private val viewModel: FlowViewModel by viewModels()
 
+
+    /**
+     * onStart
+     * Called when the activity is starting. This method sets the next alert for the user,
+     * schedules a work request for the notification worker, and calls the checkifalert and
+     * setNextAlarm methods on the view model.
+     */
     override fun onStart() {
         super.onStart()
 
-        /*
-
-
-        Log.d("mytime","current time ${MyTime.getTime()}")
-        val activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
-        val services = activityManager.getRunningServices(Integer.MAX_VALUE)
-        val serviceClass = NotificationService::class.java
-        val isRunning = services.any { service -> service.service.className == serviceClass.name }
-
-        if(isRunning) {
-
-            Log.d("ns", "stopping service...")
-            val stopServiceIntent = Intent(this, NotificationService::class.java)
-            stopService(stopServiceIntent)
-        }
-
-
-        val serviceIntent = Intent(this,NotificationService::class.java)
-        serviceIntent.putExtra("delay",false)
-        startService(serviceIntent)
-
-
-         */
 
         var schedule: Schedule = Scheduler.get_or_create_Schedule(applicationContext)
         var nextAlert: Time? = Scheduler.getNextAlarm(schedule, 0)
@@ -102,7 +94,17 @@ class MainActivity : ComponentActivity() {
 
     }
 
-
+    /**
+    * onCreate method is the first callback that is called when the Activity is created.
+    * In this method, the content view is set and the required permissions are requested.
+    * @param savedInstanceState A Bundle containing the data most recently supplied in [onSaveInstanceState].
+    * Note: If this method is called after [onStart], it will be passed the data stored in [onSaveInstanceState].
+    * The following permissions are requested in this method: READ_EXTERNAL_STORAGE & WRITE_EXTERNAL_STORAGE
+    * If both of these permissions are granted, the method sets the content view to the FlowScreen which is
+    * defined in the FlowLixTheme composable function.
+    * If any of these permissions are denied, the method sets the content view to the [PermissionDeniedScreen]
+    * composable function.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

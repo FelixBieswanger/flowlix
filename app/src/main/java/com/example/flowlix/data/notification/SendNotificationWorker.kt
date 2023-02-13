@@ -16,7 +16,30 @@ import com.example.flowlix.data.schedule.Schedule
 import com.example.flowlix.data.schedule.Scheduler
 import com.example.flowlix.presentation.MainActivity
 
+/**
+* The SendNotificationWorker class is a worker class that is used to send a notification to the user.
+* It extends the [Worker] class and implements the doWork method, which is called when the worker is executed.
+* @param context: A context that is passed to the worker.
+* @param workerParameters: Parameters that are passed to the worker.
+* @property channel_id: A constant string that defines the notification channel ID.
+* @property channel_name: A constant string that defines the notification channel name.
+* @property channel_importance: A constant integer that defines the notification channel importance.
+* @property notificationid: A constant integer that defines the notification ID.
+*/
+
 class SendNotificationWorker(context: Context, workerParameters: WorkerParameters): Worker(context,workerParameters) {
+
+
+    val notificationid = 1
+    val channel_id = "channel1"
+    val channel_name = "MyChannel"
+    val channel_importance = NotificationManager.IMPORTANCE_HIGH
+
+    /**
+    * The doWork method is called when the worker is executed. It builds a notification, sets up the notification channel,
+    * creates the notification, and sends it to the user.
+    * @return Result: The result of the worker execution, which is either success or failure.
+     */
     override fun doWork(): Result {
 
         Log.d("SendNotificationWorker","starting Notification Worker @${MyTime.getTime()}")
