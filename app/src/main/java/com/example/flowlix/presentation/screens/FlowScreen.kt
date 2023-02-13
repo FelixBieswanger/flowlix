@@ -24,7 +24,7 @@ import androidx.wear.compose.material.*
 import com.example.flowlix.R
 import com.example.flowlix.model.data.Activity
 import com.example.flowlix.viewmodel.FlowViewModel
-import com.example.flowlix.model.resources.StringProvider
+import com.example.flowlix.model.resources.QuestionProvider
 import com.example.flowlix.presentation.screens.NoActivityScreen
 import java.util.*
 
@@ -86,12 +86,12 @@ fun FlowScreen(modifier: Modifier = Modifier, flowViewModel: FlowViewModel) {
 
 
                     val questionIndex = flowUIState.value.questionIndex
-                    val question = StringProvider.questions[questionIndex]
+                    val question = QuestionProvider.questions[questionIndex]
 
-                    if (questionIndex < 12) {
+                    if (questionIndex < QuestionProvider.questions.size - 1) {
 
                         Text(
-                            text = question,
+                            text = question.question,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(30.dp, 10.dp)
@@ -106,7 +106,7 @@ fun FlowScreen(modifier: Modifier = Modifier, flowViewModel: FlowViewModel) {
                                 .height(60.dp),
                             horizontalArrangement = Arrangement.Center
                         ) {
-                            if (questionIndex == 0) {
+                            if (question.answerpossibilites.size == 2) {
 
                                 Button(
                                     modifier = Modifier
@@ -118,7 +118,7 @@ fun FlowScreen(modifier: Modifier = Modifier, flowViewModel: FlowViewModel) {
                                         )
                                     ),
                                     onClick = { flowViewModel.enterValue(questionIndex, 1) }) {
-                                    Text("Yes")
+                                    Text(text= question.answerpossibilites[0].toString())
                                 }
                                 Button(
                                     modifier = Modifier
@@ -130,12 +130,13 @@ fun FlowScreen(modifier: Modifier = Modifier, flowViewModel: FlowViewModel) {
                                         )
                                     ),
                                     onClick = { flowViewModel.enterValue(questionIndex, 0) }) {
-                                    Text(text = "No")
+                                    Text(text = question.answerpossibilites[1].toString())
                                 }
 
-                            } else {
+                            } else if (question.answerpossibilites.size > 2){
                                 Spacer(modifier = Modifier.weight(1f))
-                                for (i in 1..7) {
+
+                                question.answerpossibilites.forEachIndexed { index, answer ->
                                     Button(
                                         modifier = Modifier
                                             .padding(5.dp, 0.dp)
@@ -145,19 +146,27 @@ fun FlowScreen(modifier: Modifier = Modifier, flowViewModel: FlowViewModel) {
                                                 0xFF43968A
                                             )
                                         ),
-                                        onClick = { flowViewModel.enterValue(questionIndex, i) }) {
-                                        Text(text = i.toString())
+                                        onClick = {
+                                            flowViewModel.enterValue(
+                                                questionIndex,
+                                                answer = index+1
+                                            )
+                                        }
+                                    ) {
+                                        Text(text = answer.toString())
                                     }
                                 }
+
                             }
                         }
                     } else {
 
 
-                        val activities : List<Activity> = StringProvider.activities
+                        val activities: List<Activity> = question.answerpossibilites as List<Activity>
+                        print(activities.toString())
 
                         Text(
-                            text = question,
+                            text = question.question,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(20.dp, 20.dp)

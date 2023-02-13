@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import com.example.flowlix.model.data.FlowUIState
 import com.example.flowlix.model.io
-import com.example.flowlix.model.resources.StringProvider
+import com.example.flowlix.model.resources.QuestionProvider
 import com.example.flowlix.model.schedule.Schedule
 import com.example.flowlix.model.schedule.Scheduler
 import kotlinx.coroutines.GlobalScope
@@ -153,7 +153,7 @@ class FlowViewModel(app: Application) : AndroidViewModel(app) {
             _uiState.value = _uiState.value.copy(questionIndex = 12)
         } else {
 
-            if (questionIndex < StringProvider.questions.size - 1) {
+            if (questionIndex < QuestionProvider.questions.size - 1) {
                 questionIndex++
                 _uiState.value = _uiState.value.copy(questionIndex = questionIndex)
             } else {
