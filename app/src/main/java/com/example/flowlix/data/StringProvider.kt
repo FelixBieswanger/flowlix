@@ -2,6 +2,13 @@ package com.example.flowlix.data
 
 import com.example.flowlix.R
 
+
+/**
+ * StringProvider object containing questions and activities used in the app.
+ *
+ * @property questions A list of strings representing the questions used in the app.
+ * @property activities A list of [Activity] objects representing the activities used in the app.
+ */
 object StringProvider {
     val questions = listOf<String>(
         "Do you experience Flow right now?",
