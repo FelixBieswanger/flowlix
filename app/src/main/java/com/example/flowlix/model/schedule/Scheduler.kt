@@ -11,7 +11,9 @@ import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * The Scheduler object generates a schedule of alerts for the day.
+ */
 object Scheduler {
 
     val START_HOUR = 9
@@ -23,7 +25,12 @@ object Scheduler {
     val GSON = Gson()
     val scheduleType = object : TypeToken<Schedule>() {}.type
 
-
+    /**
+    * Returns the last alert in the schedule.
+    *
+    * @param schedule The schedule to get the last alert from.
+    * @return The time of the last alert, or null if there are no alerts in the schedule.
+    */
     fun getLastAlert(schedule: Schedule): Time?{
         val currentTime = MyTime.getTime()
         Log.d("Scheduler.getLastAlert","current time_ ${currentTime.toString()}")
@@ -45,7 +52,13 @@ object Scheduler {
         }
     }
 
-    // gebe den letzt
+    /**
+     * Returns the next alert in the schedule.
+     *
+     * @param schedule The schedule to get the next alert from.
+     * @param offset The offset from the current time to the next alert, in alerts. Defaults to 0.
+     * @return The time of the next alert, or null if there are no more alerts in the schedule for the day.
+     */
     fun getNextAlarm(schedule: Schedule, offset: Int = 0): Time?{
         val currentTime = MyTime.getTime()
         Log.d("nextalarm","current time_ ${currentTime.toString()}")
@@ -70,7 +83,13 @@ object Scheduler {
     }
 
 
-
+    /**
+     * Returns the schedule for the day. If a schedule file already exists for the day, it is loaded
+     * from disk,otherwise a new schedule is generated and saved to disk.
+     *
+     * @param context The context of the application.
+     * @return The schedule for the day.
+     */
     fun get_or_create_Schedule(context: Context): Schedule {
 
         val mydate = MyTime.getDate()
@@ -85,6 +104,13 @@ object Scheduler {
         return create_and_save_schedule(context,date=mydateformatted)
     }
 
+    /**
+     * Generates a list of uniformly distributed samples that add up to y.
+     *
+     * @param n The number of samples to generate.
+     * @param y The sum of the samples.
+     * @return The list of samples.
+     */
     private fun sampleNTimesSumY(n: Int, y: Double): List<Double> {
         val random = Random()
         val samples = mutableListOf<Double>()
@@ -112,7 +138,15 @@ object Scheduler {
         return new_scheudle
     }
 
-
+    /**
+     * Generates a list of alert times for the given time range.
+     *
+     * @param startTime The start time of the time range.
+     * @param endTime The end time of the time range.
+     * @param numberofAlerts The number of alerts to generate.
+     * @param timebetweenAlerts The time between alerts in hours.
+     * @return The list of alert times.
+     */
     private fun generate_schedule(startTime: Time, endTime:Time, numberofAlerts: Int, timebetweenAlerts: Int): List<String>{
 
         val allowed_pause = ((endTime.time-startTime.time)/3600/1000)-numberofAlerts+1
