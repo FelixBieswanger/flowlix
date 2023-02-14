@@ -2,6 +2,7 @@ package com.example.flowlix.model.schedule
 
 import android.content.Context
 import android.util.Log
+import com.example.flowlix.model.data.Schedule
 import com.example.flowlix.model.resources.MyTime
 import com.example.flowlix.model.io
 import com.google.gson.Gson
@@ -45,7 +46,7 @@ object Scheduler {
     }
 
     // gebe den letzt
-    fun getNextAlarm(schedule: Schedule,offset: Int = 0): Time?{
+    fun getNextAlarm(schedule: Schedule, offset: Int = 0): Time?{
         val currentTime = MyTime.getTime()
         Log.d("nextalarm","current time_ ${currentTime.toString()}")
         var timeindex = -1

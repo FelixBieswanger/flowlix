@@ -11,7 +11,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.flowlix.R
 import com.example.flowlix.model.resources.MyTime
-import com.example.flowlix.model.schedule.Schedule
+import com.example.flowlix.model.data.Schedule
 import com.example.flowlix.model.schedule.Scheduler
 import com.example.flowlix.presentation.MainActivity
 

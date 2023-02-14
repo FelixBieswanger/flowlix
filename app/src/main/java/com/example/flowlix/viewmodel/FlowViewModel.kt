@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.flowlix.model.data.FlowUIState
 import com.example.flowlix.model.io
 import com.example.flowlix.model.resources.QuestionProvider
-import com.example.flowlix.model.schedule.Schedule
+import com.example.flowlix.model.data.Schedule
 import com.example.flowlix.model.schedule.Scheduler
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay

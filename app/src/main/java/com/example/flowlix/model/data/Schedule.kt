@@ -1,4 +1,4 @@
-package com.example.flowlix.model.schedule
+package com.example.flowlix.model.data
 
 /**
 Schedule class holds information about a schedule for a specific date.

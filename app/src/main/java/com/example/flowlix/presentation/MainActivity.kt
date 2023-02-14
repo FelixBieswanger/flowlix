@@ -28,7 +28,7 @@ import com.example.flowlix.viewmodel.FlowViewModel
 import com.example.flowlix.model.resources.MyTime
 
 import com.example.flowlix.notification.SendNotificationWorker
-import com.example.flowlix.model.schedule.Schedule
+import com.example.flowlix.model.data.Schedule
 import com.example.flowlix.model.schedule.Scheduler
 
 import com.example.flowlix.presentation.theme.FlowLixTheme
