@@ -36,10 +36,10 @@ The model package contains the implementation of the flowlix class, which serves
   The notification package includes the implementation of the ActionReceiver and SendNotificationWorker classes, which serve as the components responsible for sending notifications to the user.
 
 
-* viewmodel Package \
+* [Viewmodel Package](app/src/main/java/com/example/flowlix/viewmodel/) \
 This package includes the implementation of the FlowViewModel class, which serves as the primary view model for the application.
 
-* View Packacke \
+* [View Packacke](app/src/main/java/com/example/flowlix/view/) \
 This package includes the implementation of the various screens that make up the user interface of the application, such as the MainActivity, presentation, and theme classes.
 
 
